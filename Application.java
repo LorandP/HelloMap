@@ -19,12 +19,14 @@ public class Application {
         String keyA;
         String keyB;
 
-        if (map.get("a") != null && map.get("b") != null) {
-
+        if (map.get("a") == null || map.get("b") == null) {
             keyA = valueToStringOrEmpty(map, "a");
             keyB = valueToStringOrEmpty(map, "b");
             map.put("ab", keyA + keyB);
         }
+        if (map.get("a") != null && map.get("b") != null)
+            map.put("ab", map.get("a") + map.get("b"));
+
         return map;
     }
 
@@ -38,15 +40,15 @@ public class Application {
      * @return the modified value.
      */
     private String valueToStringOrEmpty(Map<String, String> map, String key) {
-        Object value = map.get(key);
-        return value == null ? "" : value.toString();
+        String value = map.get(key);
+        return value == null ? "" : value;
     }
 
     public static void main(String[] args) {
         Application application = new Application();
         Map<String, String> map = new HashMap<String, String>();
         map.put("b", "There");
-        map.put("a", "Hi");
+        map.put("a", "hi");
 
         Set set = application.mapAB(map).entrySet();
         Iterator itr = set.iterator();
