@@ -23,8 +23,7 @@ public class Application {
             keyA = valueToStringOrEmpty(map, "a");
             keyB = valueToStringOrEmpty(map, "b");
             map.put("ab", keyA + keyB);
-        }
-        if (map.get("a") != null && map.get("b") != null)
+        } else
             map.put("ab", map.get("a") + map.get("b"));
 
         return map;
@@ -48,7 +47,7 @@ public class Application {
         Application application = new Application();
         Map<String, String> map = new HashMap<String, String>();
         map.put("b", "There");
-        map.put("a", "hi");
+        map.put("a", "Hi");
 
         Set set = application.mapAB(map).entrySet();
         Iterator itr = set.iterator();
